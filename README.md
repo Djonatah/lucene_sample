@@ -1,0 +1,1 @@
+Lucene index / search sample
