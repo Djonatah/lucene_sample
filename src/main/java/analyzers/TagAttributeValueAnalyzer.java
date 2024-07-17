@@ -2,17 +2,17 @@ package analyzers;
 
 import org.apache.lucene.analysis.Analyzer;
 
-public class HTMLAttributeValueAnalyzer extends Analyzer {
+public class TagAttributeValueAnalyzer extends Analyzer {
     private final String attributeName;
 
-    public HTMLAttributeValueAnalyzer(String attributeName) {
+    public TagAttributeValueAnalyzer(String attributeName) {
         this.attributeName = attributeName;
     }
 
     @Override
     protected TokenStreamComponents createComponents(String fieldName) {
         RegExCaptureTokenizer tokenizer = new RegExCaptureTokenizer(attributeName + "\\s*?=\\s*?\".*?\"");
-        HTMLAttributeValueFilter filter = new HTMLAttributeValueFilter(tokenizer, attributeName);
+        TagAttributeValueFilter filter = new TagAttributeValueFilter(tokenizer, attributeName);
         return new TokenStreamComponents(tokenizer, filter);
     }
 }

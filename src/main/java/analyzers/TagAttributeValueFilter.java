@@ -5,14 +5,18 @@ import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class HTMLAttributeValueFilter extends TokenFilter {
+public class TagAttributeValueFilter extends TokenFilter {
     private final CharTermAttribute termAttr = addAttribute(CharTermAttribute.class);
     String attributeName;
+    private Pattern attributePattern;
 
-    protected HTMLAttributeValueFilter(TokenStream input, String attributeName) {
+    protected TagAttributeValueFilter(TokenStream input, String attributeName) {
         super(input);
         this.attributeName = attributeName;
+        this.attributePattern = Pattern.compile(attributeName + "\\s*?=\\s*?\"(.*)\"");
     }
 
     @Override
@@ -27,6 +31,7 @@ public class HTMLAttributeValueFilter extends TokenFilter {
         return false;
     }
     private String stripAttributeName(String token) {
-        return token.replaceAll(attributeName + "\\s*?=\\s*?\"(.*)\"", "$1");
+        Matcher matcher = attributePattern.matcher(token);
+        return matcher.replaceAll("$1");
     }
 }

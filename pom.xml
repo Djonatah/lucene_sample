@@ -18,7 +18,11 @@
       <artifactId>lucene-queryparser</artifactId>
       <version>9.11.1</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analyzers-common</artifactId>
+      <version>7.4.0</version>
+    </dependency>
 
   </dependencies>
   <build>
@@ -27,8 +31,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>11</source>
-          <target>11</target>
+          <source>15</source>
+          <target>15</target>
         </configuration>
       </plugin>
     </plugins>

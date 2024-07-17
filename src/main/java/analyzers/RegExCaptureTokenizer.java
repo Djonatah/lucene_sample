@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegexCaptureTokenizer extends Tokenizer {
+public class RegExCaptureTokenizer extends Tokenizer {
     private final CharTermAttribute termAttr = addAttribute(CharTermAttribute.class);
     private final Pattern pattern;
     private final StringBuilder buffer = new StringBuilder();
     private Matcher matcher;
     private boolean done = false;
 
-    public RegexCaptureTokenizer(String regex) {
+    public RegExCaptureTokenizer(String regex) {
         this.pattern = Pattern.compile(regex);
     }
 
